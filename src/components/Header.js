@@ -1,29 +1,31 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import 'components/Header.css';
 
 class Header extends Component {
   renderLinks = () => {
     if (this.props.authenticated) {
       return (
-        <Fragment>
+        <div>
           <Link to="/feature">Feature</Link>
           <Link to="/signout">Sign Out</Link>
-        </Fragment>
+        </div>
       );
     } else {
       return (
-        <Fragment>
+        <div>
           <Link to="/signup">Sign Up</Link>
           <Link to="/signin">Sign In</Link>
-        </Fragment>
+        </div>
       );
     }
   }
 
   render() {
     return (
-      <div>
+      <div className="header">
         <Link to="/">Redux Auth</Link>
         {this.renderLinks()}
       </div>
