@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { reduxForm, Field } from 'redux-form';
 
 class Signup extends Component {
   render() {
@@ -7,13 +7,25 @@ class Signup extends Component {
       <form>
         <fieldset>
           <label>Email</label>
+          <Field
+            name="email"
+            type="text"
+            component="input"
+            autoComplete="off"
+          />
         </fieldset>
         <fieldset>
           <label>Password</label>
+          <Field
+            name="password"
+            type="password"
+            component="input"
+            autoComplete="off"
+          />
         </fieldset>
       </form>
     );
   }
 }
 
-export default Signup;
+export default reduxForm({ form: 'signup' })(Signup);
