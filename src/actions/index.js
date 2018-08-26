@@ -16,7 +16,7 @@ export const signup = (formProps, callback) => async dispatch => {
   } catch ({ response }) {
     const { data } = response;
 
-    dispatch({ type: AUTH_ERROR, payload: data.error });
+    dispatch({ type: AUTH_ERROR, payload: data.message });
   }
 }
 
@@ -27,4 +27,18 @@ export const signout = () => {
     type: AUTH_USER,
     payload: ''
   };
+}
+
+export const signin = (formProps, callback) => async dispatch => {
+  try {
+    const { data: { token } } = await axios.post(`${REACT_APP_API_URL}/signin`, formProps);
+
+    dispatch({ type: AUTH_USER, payload: token });
+    localStorage.setItem('token', token);
+    callback();
+  } catch ({ response }) {
+    const { data } = response;
+
+    dispatch({ type: AUTH_ERROR, payload: data.message });
+  }
 }
